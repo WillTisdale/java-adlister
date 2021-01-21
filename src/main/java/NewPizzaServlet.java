@@ -12,6 +12,8 @@ public class NewPizzaServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String name = req.getParameter("name");
+        String phone = req.getParameter("phone");
         String address = req.getParameter("user-address");
         String size = req.getParameter("size");
         String cheese = req.getParameter("cheese");
@@ -65,7 +67,7 @@ public class NewPizzaServlet extends HttpServlet {
             }
             System.out.printf("%n");
         }
-        System.out.printf("Address: %s", address);
+        System.out.printf("Name: %s%nPhone Number: %s%nAddress: %s", name, phone, address);
         req.getRequestDispatcher("/new-pizza.jsp").forward(req,res);
     }
 }

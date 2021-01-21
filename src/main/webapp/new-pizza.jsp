@@ -17,27 +17,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <%--    <link rel="stylesheet" type="text/css" href="css/pizza-order.css">--%>
     <style>
-        .jumbotron {
-            margin-top: 2em;
-            background-image: url("img/pizza.png");
-            display: flex;
-            justify-content: center;
-            align-content: center;
-        }
-
-        div.jumbotron>h1 {
-            opacity: 0.75;
-            background: lightgrey;
-            width: 100%;
-            text-align: center;
-        }
         html {
             min-width: 320px;
-        }
-        @media screen and (max-width: 768px) {
-            .jumbotron {
-                display: none;
-            }
         }
         @media screen and (max-width: 525px){
             .nav-tabs {
@@ -48,38 +29,11 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pizza World</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Order online <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search stores near you!</button>
-                </form>
-                </li>
-            </ul>
-                <a class="nav-link text-secondary" href="#"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                </svg>  Sign Up</a>
-        </div>
-    </nav>
 
     <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid">
-                <h1 class="display-4">Welcome to Pizza World!</h1>
-        </div>
-        <h2>Build your own pizza!</h2>
+        <br>
+        <h1 class="text-center">Build your own pizza!</h1>
+        <br>
         <form action="/newpizza" method="POST">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -202,9 +156,9 @@
                             </li>
                         </ul>
                         <br>
-                        <div class="card-footer" role="group" style="display: flex; justify-content: flex-end">
-                            <a href="#home" data-toggle="tab" class="btn btn-primary" style="float: right;">‹Previous Step</a>
-                            <a href="#contact" data-toggle="tab" class="btn btn-primary" style="float: right;">Next Step›</a>
+                        <div class="card-footer" role="group" style="display: flex; justify-content: space-between">
+                            <a href="#home" data-toggle="tab" class="btn btn-primary">‹Previous Step</a>
+                            <a href="#contact" data-toggle="tab" class="btn btn-primary">Next Step›</a>
                         </div>
                     </div>
                 </div>
@@ -290,9 +244,9 @@
                             </li>
                         </ul>
                         <br>
-                        <div class="card-footer" role="group" style="display: flex; justify-content: flex-end">
-                            <a href="#profile" data-toggle="tab" class="btn btn-primary" style="float: right;">‹Previous Step</a>
-                            <a href="#address" data-toggle="tab" class="btn btn-primary" style="float: right;">Next Step›</a>
+                        <div class="card-footer" role="group" style="display: flex; justify-content: space-between">
+                            <a href="#profile" data-toggle="tab" class="btn btn-primary">‹Previous Step</a>
+                            <a href="#address" data-toggle="tab" class="btn btn-primary">Next Step›</a>
                         </div>
                     </div>
                 </div>
@@ -303,21 +257,23 @@
                         Delivery Information
                     </div>
                     <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-action list-group-item-secondary">Enter Address</li>
-                            <li class="list-group-item">
-
-                                    <input class="form-check-input" type="text" id="user-address" name="user-address">
-
-                            </li>
-                        </ul>
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter name" name="name">
+                            <br>
+                            <label for="exampleInputEmail3">Phone Number</label>
+                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter phone number" name="phone">
+                            <br>
+                            <label for="exampleInputEmail1">Delivery Address</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter address" name="user-address">
+                        </div>
                         <br>
 
                         <br>
-                        <div class="card-footer" style="display: flex; justify-content: flex-end">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            <input type="submit" value="Checkout">
-                        </button>
+                        <div class="card-footer" style="display: flex; justify-content: space-between">
+                            <a href="#contact" data-toggle="tab" class="btn btn-primary">‹Previous Step</a>
+                            <input type="submit" class="btn btn-primary" value="Checkout">
+
                         </div>
                     </div>
                 </div>
