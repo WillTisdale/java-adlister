@@ -217,7 +217,7 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="mushrooms" name="veggie2">
+                                    <input class="form-check-input" type="checkbox" value="mushrooms" id="mushrooms" name="veggie2">
                                     <label class="form-check-label" for="mushrooms">
                                         Mushrooms
                                     </label>
