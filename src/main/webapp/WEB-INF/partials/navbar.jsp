@@ -7,9 +7,9 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="/settings">Settings</a></li>
         <c:choose>
             <c:when test="${sessionScope.isLoggedIn}">
+                    <li><a href="/settings">Settings</a></li>
                     <li><a href="/logout">Logout</a></li>
             </c:when>
             <c:otherwise>

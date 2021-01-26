@@ -9,11 +9,6 @@ import java.io.IOException;
 @WebServlet(name = "HelloWorldServlet", urlPatterns = "/")
 public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-
-        if(session.getAttribute("isLoggedIn") == null){
-            session.setAttribute("isLoggedIn", false);
-        }
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 }
