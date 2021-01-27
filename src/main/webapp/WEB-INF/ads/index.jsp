@@ -13,12 +13,22 @@
     <h1>Here Are all the ads!</h1>
 
     <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <h4>${ad.title}</h4>
-            <p>${ad.description}</p>
+        <div class="card col-md-6">
+          <div class="card-header">
+            ${ad.title}
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>${ad.description}</p>
+<%--              <footer class="blockquote-footer">${ad.userId}</footer>--%>
+            </blockquote>
+          </div>
         </div>
     </c:forEach>
 </div>
+
+
+
 
 </body>
 </html>
