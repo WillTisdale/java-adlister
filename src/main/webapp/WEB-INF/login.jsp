@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,6 +8,11 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <c:choose>
+        <c:when test="${sessionScope.logInError}">
+            <script>alert("Invalid username or password")</script>
+        </c:when>
+    </c:choose>
     <div class="container">
         <h1>Please Log In</h1>
         <form action="/login" method="POST">
@@ -19,6 +25,9 @@
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
+        </form>
+        <form action="/register" method="get">
+            <input type="submit" class="btn btn-primary btn-block" value="Register">
         </form>
     </div>
 </body>

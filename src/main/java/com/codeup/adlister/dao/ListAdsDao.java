@@ -15,6 +15,10 @@ public class ListAdsDao implements Ads {
         return ads;
     }
 
+    public List<Ad> searchAds(String searchQuery) {
+        return null;
+    }
+
     public Long insert(Ad ad) {
         // make sure we have ads
         if (ads == null) {

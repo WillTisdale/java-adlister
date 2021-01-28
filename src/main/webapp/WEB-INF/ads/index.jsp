@@ -10,7 +10,23 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <form action="/ads" method="post">
+        <input type="hidden" name="item" value="showAll">
+        <button>Show all!</button>
+    </form>
+    <form action="/ads" method="post">
+        <input type="text" id="item" name="item" placeholder="Search Here!">
+        <button>Let's go!</button>
+    </form>
+
+    <c:choose>
+        <c:when test="${hasResults}">
+            <h1>Here Are all the ads!</h1>
+        </c:when>
+        <c:otherwise>
+            <h1>No Ads match your search. Try Again!</h1>
+        </c:otherwise>
+    </c:choose>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
@@ -18,6 +34,7 @@
             <p>${ad.description}</p>
         </div>
     </c:forEach>
+
 </div>
 
 </body>

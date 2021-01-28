@@ -13,6 +13,24 @@ import java.io.IOException;
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        boolean hasResults = true;
+        request.setAttribute("hasResults", hasResults);
+        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchQuery = request.getParameter("item");
+        if (searchQuery.equals("showAll")){
+            request.setAttribute("ads", DaoFactory.getAdsDao().all());
+            boolean hasResults = true;
+            request.setAttribute("hasResults", hasResults);
+            request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+            return;
+        }
+        request.setAttribute("ads", DaoFactory.getAdsDao().searchAds(searchQuery));
+        boolean hasResults = DaoFactory.getAdsDao().searchAds(searchQuery).size() > 0;
+        request.setAttribute("hasResults", hasResults);
+        request.setAttribute("searchQuery", searchQuery);
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
 }
