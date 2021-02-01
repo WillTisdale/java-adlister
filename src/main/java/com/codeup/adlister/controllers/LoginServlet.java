@@ -2,6 +2,8 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,10 +32,21 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        boolean validAttempt = password.equals(user.getPassword());
+        String hash = Password.hash(password);
+
+        boolean validAttempt = Password.check(password, hash);
 
         if (validAttempt) {
+            if(request.getSession().getAttribute("creatingAd") != null){
+                if((boolean) request.getSession().getAttribute("creatingAd")){
+                    request.getSession().setAttribute("user", user);
+                    request.getSession().setAttribute("isLoggedIn", true);
+                    response.sendRedirect("/ads/create");
+                    return;
+                }
+            }
             request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("isLoggedIn", true);
             response.sendRedirect("/profile");
         } else {
             response.sendRedirect("/login");

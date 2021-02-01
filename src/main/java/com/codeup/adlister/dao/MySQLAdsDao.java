@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -35,6 +36,62 @@ public class MySQLAdsDao implements Ads {
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> getUsersAds(long userId) {
+        PreparedStatement stmt = null;
+        String sqlQuery = "SELECT * FROM ads WHERE user_id = ?";
+        List<Ad> ads = new ArrayList<>();
+        try {
+            stmt = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, userId);
+            stmt.executeQuery();
+            ResultSet rs = stmt.getResultSet();
+            while(rs.next()){
+                Ad ad = new Ad(
+            rs.getLong("id"),
+            rs.getLong("user_id"),
+            rs.getString("title"),
+            rs.getString("description")
+            );
+                ads.add(ad);
+            }
+            return ads;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(DaoFactory.getAdsDao().getUsersAds(10));
+    }
+
+       @Override
+    public Ad getAd(long adId) {
+        PreparedStatement stmt = null;
+        String sqlQuery = "SELECT * FROM ads WHERE id = ?";
+
+        try {
+            stmt = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, adId);
+
+            stmt.executeQuery();
+
+            ResultSet rs = stmt.getResultSet();
+
+            rs.next();
+
+            Ad ad = new Ad(
+            rs.getLong("id"),
+            rs.getLong("user_id"),
+            rs.getString("title"),
+            rs.getString("description")
+            );
+            return ad;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
         }
     }
 

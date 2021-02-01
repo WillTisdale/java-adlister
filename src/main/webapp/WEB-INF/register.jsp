@@ -28,6 +28,9 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>
+        <form action="/register" method="get">
+            <input type="submit" class="btn btn-primary btn-block" value="Register">
+        </form>
     </div>
 </body>
 </html>

@@ -10,12 +10,30 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
+    <form action="/ads/create" method="get">
+        <input type="submit" class="btn" value="Create Ad Here!">
+    </form>
     <h1>Here Are all the ads!</h1>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
+            <div class="card">
+                <div class="card-title">
+                    <h2>${ad.title}</h2>
+                </div>
+                <div class="card-body">
+                    <p>${ad.description}</p>
+                </div>
+                <div class="card-footer">
+                    <form action="/show" method="post">
+                        <input type="hidden" value="${ad.id}" name="adId">
+                        <button type="submit">View Ad</button>
+                    </form>
+                </div>
+            </div>
+
+
+
         </div>
     </c:forEach>
 </div>
